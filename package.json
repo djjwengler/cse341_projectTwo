@@ -1,0 +1,43 @@
+{
+  "name": "mealPlanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "devStart": "nodemon index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "swagger": "node ./swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djjwengler/cse341"
+  },
+  "keywords": [],
+  "author": "JWengler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djjwengler/cse341/issues"
+  },
+  "homepage": "https://github.com/djjwengler/cse341_projectTwo",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mongodb": "^4.10.0",
+    "swagger-ui-express": "^4.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "swagger-autogen": "^2.22.0"
+  }
+}
