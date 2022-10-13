@@ -37,35 +37,37 @@ GET http://localhost:8080/days/632b21c3bc63158a737c1f0b
 
 
 // PRODUCTION Deploy 
-### Get all contacts
-GET https://jw-341-projectone.onrender.com/contacts 
+### Get all recipes
+GET https://jw-341-projecttwo.onrender.com/recipes 
 
-### Get one contact
-GET https://jw-341-projectone.onrender.com/contacts/632b21c3bc63158a737c1f0b 
+### Get one recipe
+GET https://jw-341-projecttwo.onrender.com/recipes/634732b8112fbea1f35de353 
 
-### Create contact
-POST http://jw-341-projectone.onrender.com/contacts HTTP/1.1
+### Create recipe
+POST http://jw-341-projecttwo.onrender.com/recipes HTTP/1.1
 content-type: application/json
 
 {
-    "firstName":"Sam",
-    "lastName":"Zundel",
-    "email":"sam@gmail.com",
-    "favoriteColor":"red",
-    "birthday":"09/14/2010"
+    "name": "NewRecipe",
+    "ingredients": "[3 amazing ingredients, 2 amazing ingredients]",
+    "directions": "[put them all together, cook them]"
 }
 
-### Update contact
-PUT http://jw-341-projectone.onrender.com/contacts/633d90bc09cbbeb1f9a3b66a HTTP/1.1
+### Update recipe
+PUT http://jw-341-projecttwo.onrender.com/recipes/63488f14559883f721478d3e HTTP/1.1
 content-type: application/json
 
   {
-    "firstName": "Sam",
-    "lastName": "Zundel",
-    "email": "sam@gmail.com",
-    "favoriteColor": "blue",
-    "birthday": "09/14/2010"
+    "name": "NewRecipe",
+    "ingredients": "[5 amazing ingredients, 2 amazing ingredients]",
+    "directions": "[put them all together, cook them]"
   }
 
-### Delete contact
-DELETE http://jw-341-projectone.onrender.com/contacts/6335ade5c07afaa3e48ef1f9 HTTP/1.1
+### Delete recipe
+DELETE http://jw-341-projecttwo.onrender.com/recipes/63488f14559883f721478d3e HTTP/1.1
+
+### Get all days
+GET https://jw-341-projecttwo.onrender.com/days 
+
+### Get one day
+GET https://jw-341-projecttwo.onrender.com/days/63487ec8d373ea68cf1215f1 
