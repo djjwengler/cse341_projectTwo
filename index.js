@@ -27,6 +27,10 @@ app
   })
   .use('/', require('./src/routes'));
 
+process.on('uncaughtException', (err, origin) => {
+  console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
+});
+
 mongodb.initDatabase((err, mongodb) => {
   if (err) {
     console.log(err);

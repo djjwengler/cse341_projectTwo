@@ -3,30 +3,35 @@
 GET http://localhost:8080/recipes 
 
 ### Get one recipe
-GET http://localhost:8080/recipes/6348818b94640c6b42100c50 
+GET http://localhost:8080/recipes/6350777ecb10a7354accd434 
 
 ### Create recipe
 POST http://localhost:8080/recipes HTTP/1.1
 content-type: application/json
 
 {
-    "name": "NewRecipe",
-    "ingredients": "[3 amazing ingredients, 2 amazing ingredients]",
-    "directions": "[put them all together, cook them]"
+    "name": "NewestRecipe",
+    "ingredients": ["5 amazing ingredients", "2 amazing ingredients"],
+    "directions": ["put them all together", "cook them"],
+    "groceryList": ["first", "second", "third"],
+    "mealType": "entree"
 }
 
 ### Update recipe
-PUT http://localhost:8080/recipes/6348818b94640c6b42100c50 HTTP/1.1
+PUT http://localhost:8080/recipes/6350777ecb10a7354accd434 HTTP/1.1
 content-type: application/json
 
-  {
-    "name": "NewRecipe",
-    "ingredients": "[5 amazing ingredients, 2 amazing ingredients]",
-    "directions": "[put them all together, cook them]"
-  }
+{
+    "name": "NewestRecipe",
+    "ingredients": ["5 amazing ingredients", "2 amazing ingredients"],
+    "directions": ["put them all together", "cook them"],
+    "groceryList": ["first", "second"],
+    "mealType": "entree"
+}
+
 
 ### Delete recipe
-DELETE http://localhost:8080/recipes/6348818b94640c6b42100c50 HTTP/1.1
+DELETE http://localhost:8080/recipes/6350777ecb10a7354accd434 HTTP/1.1
 
 ### Get all days
 GET http://localhost:8080/days 
@@ -34,7 +39,14 @@ GET http://localhost:8080/days
 ### Get one day
 GET http://localhost:8080/days/632b21c3bc63158a737c1f0b 
 
+### Update day
+PUT http://localhost:8080/days/6350777ecb10a7354accd434 HTTP/1.1
+content-type: application/json
 
+{
+    "name": "Monday",
+    "mealID":""
+}
 
 // PRODUCTION Deploy 
 ### Get all recipes
@@ -71,3 +83,12 @@ GET https://jw-341-projecttwo.onrender.com/days
 
 ### Get one day
 GET https://jw-341-projecttwo.onrender.com/days/63487ec8d373ea68cf1215f1 
+
+### Update day
+PUT https://jw-341-projecttwo.onrender.com/days/6350777ecb10a7354accd434 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Monday",
+    "mealID":""
+}

@@ -1,6 +1,6 @@
-const mongodb = require("../database/connect");
-const ObjectId = require("mongodb").ObjectId;
-const dotenv = require("dotenv");
+const mongodb = require('../database/connect');
+const ObjectId = require('mongodb').ObjectId;
+const dotenv = require('dotenv');
 dotenv.config();
 
 const getAllRecipes = async (req, res) => {
@@ -9,11 +9,14 @@ const getAllRecipes = async (req, res) => {
     const recipes = await mongodb
       .getDatabase()
       .db(process.env.DB_NAME)
-      .collection("Recipes")
+      .collection('Recipes')
       .find();
-    recipes.toArray().then((data) => {
-      res.setHeader("Content-Type", "application/json");
-      res.status(200).json(data);
+    recipes.toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
     });
   } catch (err) {
     res.status(500).json(err);
@@ -23,15 +26,21 @@ const getAllRecipes = async (req, res) => {
 const getOneRecipe = async (req, res) => {
   // #swagger.description = 'See one recipe'
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a recipe.');
+    }
     const recipeId = new ObjectId(req.params.id);
     const recipe = await mongodb
       .getDatabase()
       .db(process.env.DB_NAME)
-      .collection("Recipes")
+      .collection('Recipes')
       .find({ _id: recipeId });
-    recipe.toArray().then((data) => {
-      res.setHeader("Content-Type", "application/json");
-      res.status(200).json(data[0]);
+    recipe.toArray((err, result) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result[0]);
     });
   } catch (err) {
     res.status(500).json(err);
@@ -45,11 +54,15 @@ const createRecipe = async (req, res) => {
       name: req.body.name,
       ingredients: req.body.ingredients,
       directions: req.body.directions,
+      groceryList: req.body.groceryList,
+      mealType: req.body.mealType,
+      tags: req.body.tags,
+      pairsWith: req.body.pairsWith
     };
     const create = await mongodb
       .getDatabase()
       .db(process.env.DB_NAME)
-      .collection("Recipes")
+      .collection('Recipes')
       .insertOne(newRecipe);
     if (create.acknowledged) {
       res.status(201).json(create);
@@ -57,8 +70,7 @@ const createRecipe = async (req, res) => {
       res
         .status(500)
         .json(
-          create.error ||
-            "An error occurred while creating the recipe. Please try again later."
+          create.error || 'An error occurred while creating the recipe. Please try again later.'
         );
     }
   } catch (err) {
@@ -69,11 +81,14 @@ const createRecipe = async (req, res) => {
 const deleteRecipe = async (req, res) => {
   // #swagger.description = 'Delete recipe by ID'
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to delete a contact.');
+    }
     const recipeId = new ObjectId(req.params.id);
     const deleteRecipe = await mongodb
       .getDatabase()
       .db(process.env.DB_NAME)
-      .collection("Recipes")
+      .collection('Recipes')
       .deleteOne({ _id: recipeId });
     console.log(deleteRecipe);
     if (deleteRecipe.deletedCount > 0) {
@@ -83,7 +98,7 @@ const deleteRecipe = async (req, res) => {
         .status(500)
         .json(
           deleteRecipe.error ||
-            "An error occurred while deleting the recipe. Please try again later."
+            'An error occurred while deleting the recipe. Please try again later.'
         );
     }
   } catch (err) {
@@ -94,16 +109,23 @@ const deleteRecipe = async (req, res) => {
 const updateRecipe = async (req, res) => {
   // #swagger.description = 'Update recipe by ID'
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to update a contact.');
+    }
     const recipeId = new ObjectId(req.params.id);
     const updateRecipe = {
       name: req.body.name,
       ingredients: req.body.ingredients,
       directions: req.body.directions,
+      groceryList: req.body.groceryList,
+      mealType: req.body.mealType,
+      tags: req.body.tags,
+      pairsWith: req.body.pairsWith
     };
     const update = await mongodb
       .getDatabase()
       .db(process.env.DB_NAME)
-      .collection("Recipes")
+      .collection('Recipes')
       .replaceOne({ _id: recipeId }, updateRecipe);
     console.log(update);
     if (update.modifiedCount > 0) {
@@ -112,8 +134,7 @@ const updateRecipe = async (req, res) => {
       res
         .status(500)
         .json(
-          update.error ||
-            "An error occurred while updating the recipe. Please try again later."
+          update.error || 'An error occurred while updating the recipe. Please try again later.'
         );
     }
   } catch (err) {
@@ -126,5 +147,5 @@ module.exports = {
   getOneRecipe,
   updateRecipe,
   deleteRecipe,
-  createRecipe,
+  createRecipe
 };
