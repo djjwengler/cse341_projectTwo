@@ -19,7 +19,8 @@ const saveRecipe = (req, res, next) => {
     if (!status) {
       res.status(412).send({
         success: false,
-        message: 'Validation failed',
+        message:
+          'Validation failed. Name and mealType must be a string, all other fields are arrays.',
         data: err
       });
     } else {
@@ -37,7 +38,7 @@ const saveDay = (req, res, next) => {
     if (!status) {
       res.status(412).send({
         success: false,
-        message: 'Validation failed',
+        message: 'Validation failed. Both fields must be strings.',
         data: err
       });
     } else {

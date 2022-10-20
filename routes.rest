@@ -60,20 +60,24 @@ POST http://jw-341-projecttwo.onrender.com/recipes HTTP/1.1
 content-type: application/json
 
 {
-    "name": "NewRecipe",
-    "ingredients": "[3 amazing ingredients, 2 amazing ingredients]",
-    "directions": "[put them all together, cook them]"
+    "name": "NewestRecipe",
+    "ingredients": ["5 amazing ingredients", "2 amazing ingredients"],
+    "directions": ["put them all together", "cook them"],
+    "groceryList": ["first", "second", "third"],
+    "mealType": "entree"
 }
 
 ### Update recipe
 PUT http://jw-341-projecttwo.onrender.com/recipes/63488f14559883f721478d3e HTTP/1.1
 content-type: application/json
 
-  {
-    "name": "NewRecipe",
-    "ingredients": "[5 amazing ingredients, 2 amazing ingredients]",
-    "directions": "[put them all together, cook them]"
-  }
+{
+    "name": "NewestRecipe",
+    "ingredients": ["5 amazing ingredients", "2 amazing ingredients"],
+    "directions": ["put them all together", "cook them"],
+    "groceryList": ["first", "second"],
+    "mealType": "entree"
+}
 
 ### Delete recipe
 DELETE http://jw-341-projecttwo.onrender.com/recipes/63488f14559883f721478d3e HTTP/1.1

@@ -6,26 +6,8 @@ const db = process.env.DB_NAME;
 const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-// const cors = require('cors');
-// const corsOptions = {
-//   origin: '*'
-// };
 
-app
-  // .use(cors(corsOptions))
-  // .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-  .use(bodyParser.json())
-  // .use((req, res, next) => {
-  //   res.setHeader('Access-Control-Allow-Origin', '*');
-  //   res.setHeader(
-  //     'Access-Control-Allow-Headers',
-  //     'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
-  //   );
-  //   res.setHeader('Content-Type', 'application/json');
-  //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  //   next();
-  // })
-  .use('/', require('./src/routes'));
+app.use(bodyParser.json()).use('/', require('./src/routes'));
 
 process.on('uncaughtException', (err, origin) => {
   console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
