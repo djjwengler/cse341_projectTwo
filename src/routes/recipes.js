@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 const recipesController = require('../controllers/recipes');
-const validation = require('../../validation');
+const validation = require('../middleware/validation');
 
 //retrieves all recipes
 routes.get('/', recipesController.getAllRecipes);

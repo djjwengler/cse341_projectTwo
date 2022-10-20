@@ -5,8 +5,8 @@ const doc = {
     title: 'Meal Planning',
     description: 'What are we going to eat this week?'
   },
-  host: 'jw-341-projecttwo.onrender.com',
-  schemes: ['https']
+  host: '',
+  schemes: ['https', 'http']
 };
 
 const outputFile = './swagger.json';

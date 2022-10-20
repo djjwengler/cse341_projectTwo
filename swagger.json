@@ -5,11 +5,9 @@
     "description": "What are we going to eat this week?",
     "version": "1.0.0"
   },
-  "host": "jw-341-projecttwo.onrender.com",
+  "host": "",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https", "http"],
   "paths": {
     "/api-docs": {
       "get": {
@@ -21,9 +19,7 @@
     "/recipes/": {
       "get": {
         "description": "See all recipes",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -87,9 +83,7 @@
     "/recipes/{id}": {
       "get": {
         "description": "See one recipe",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -191,9 +185,7 @@
     "/days/": {
       "get": {
         "description": "See all days",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -211,9 +203,7 @@
     "/days/{id}": {
       "get": {
         "description": "See one day",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",

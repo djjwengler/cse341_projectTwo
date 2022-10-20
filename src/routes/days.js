@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 const daysController = require('../controllers/days');
-const validation = require('../../validation');
+const validation = require('../middleware/validation');
 
 //retrieves all days
 routes.get('/', daysController.getAllDays);
