@@ -43,6 +43,57 @@ const getOneDay = async (req, res) => {
   }
 };
 
+const createDay = async (req, res) => {
+  // #swagger.description = 'Create new day'
+  try {
+    const newDay = {
+      name: req.body.name,
+      mealId: req.body.mealId
+    };
+    const create = await mongodb
+      .getDatabase()
+      .db(process.env.DB_NAME)
+      .collection('Days')
+      .insertOne(newDay);
+    if (create.acknowledged) {
+      res.status(201).json(create);
+    } else {
+      res
+        .status(500)
+        .json(create.error || 'An error occurred while creating the day. Please try again later.');
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+const deleteDay = async (req, res) => {
+  // #swagger.description = 'Delete day by ID'
+  try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to delete a contact.');
+    }
+    const dayId = new ObjectId(req.params.id);
+    const deleteDay = await mongodb
+      .getDatabase()
+      .db(process.env.DB_NAME)
+      .collection('Days')
+      .deleteOne({ _id: dayId });
+    console.log(deleteDay);
+    if (deleteDay.deletedCount > 0) {
+      res.status(200).send();
+    } else {
+      res
+        .status(500)
+        .json(
+          deleteDay.error || 'An error occurred while deleting the day. Please try again later.'
+        );
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 const updateDay = async (req, res) => {
   // #swagger.description = 'Update day by ID'
   try {
@@ -75,5 +126,7 @@ const updateDay = async (req, res) => {
 module.exports = {
   getAllDays,
   getOneDay,
-  updateDay
+  updateDay,
+  deleteDay,
+  createDay
 };
