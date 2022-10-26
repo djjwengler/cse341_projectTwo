@@ -11,4 +11,10 @@ routes.get('/:id', daysController.getOneDay);
 //updates one day by ID
 routes.put('/:id', validation.saveDay, daysController.updateDay);
 
+//deletes one recipe by ID
+routes.delete('/:id', daysController.deleteDay);
+
+//creates one recipe
+routes.post('/', validation.saveDay, daysController.createDay);
+
 module.exports = routes;
