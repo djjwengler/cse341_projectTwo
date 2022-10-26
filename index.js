@@ -4,8 +4,6 @@ const mongodb = require('./src/database/connect');
 const port = process.env.PORT || 3000;
 const db = process.env.DB_NAME;
 const app = express();
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
 
 app.use(bodyParser.json()).use('/', require('./src/routes'));
 
