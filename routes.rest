@@ -3,7 +3,7 @@
 GET http://localhost:8080/recipes 
 
 ### Get one recipe
-GET http://localhost:8080/recipes/6350777ecb10a7354accd434 
+GET http://localhost:8080/recipes/6359a5f35d6e75e725998db6 
 
 ### Create recipe
 POST http://localhost:8080/recipes HTTP/1.1
@@ -18,12 +18,12 @@ content-type: application/json
 }
 
 ### Update recipe
-PUT http://localhost:8080/recipes/6350777ecb10a7354accd434 HTTP/1.1
+PUT http://localhost:8080/recipes/6359a5f35d6e75e725998db6 HTTP/1.1
 content-type: application/json
 
 {
     "name": "NewestRecipe",
-    "ingredients": ["5 amazing ingredients", "2 amazing ingredients"],
+    "ingredients": ["7 amazing ingredients", "2 amazing ingredients"],
     "directions": ["put them all together", "cook them"],
     "groceryList": ["first", "second"],
     "mealType": "entree"
@@ -31,22 +31,36 @@ content-type: application/json
 
 
 ### Delete recipe
-DELETE http://localhost:8080/recipes/6350777ecb10a7354accd434 HTTP/1.1
+DELETE http://localhost:8080/recipes/6359a5f35d6e75e725998db6 HTTP/1.1
+
 
 ### Get all days
 GET http://localhost:8080/days 
 
 ### Get one day
-GET http://localhost:8080/days/632b21c3bc63158a737c1f0b 
+GET http://localhost:8080/days/63487efbd373ea68cf1215f3 
 
-### Update day
-PUT http://localhost:8080/days/6350777ecb10a7354accd434 HTTP/1.1
+### Create day
+POST http://localhost:8080/days HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Monday",
+    "name": "NewDay",
     "mealID":""
 }
+
+### Update day
+PUT http://localhost:8080/days/6359a6695d6e75e725998db7 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "NewDay2",
+    "mealID":""
+}
+
+### Delete day
+DELETE http://localhost:8080/days/6359a6695d6e75e725998db7 HTTP/1.1
+
 
 // PRODUCTION Deploy 
 ### Get all recipes
