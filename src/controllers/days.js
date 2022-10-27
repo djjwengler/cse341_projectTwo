@@ -43,6 +43,27 @@ const getOneDay = async (req, res) => {
   }
 };
 
+const getOneDaybyName = async (req, res) => {
+  // #swagger.description = 'See one day by name'
+  try {
+    const dayName = req.params.name;
+    const day = await mongodb
+      .getDatabase()
+      .db(process.env.DB_NAME)
+      .collection('Days')
+      .find({ name: dayName });
+    day.toArray((err, result) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result[0]);
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 const createDay = async (req, res) => {
   // #swagger.description = 'Create new day'
   try {
@@ -128,5 +149,6 @@ module.exports = {
   getOneDay,
   updateDay,
   deleteDay,
-  createDay
+  createDay,
+  getOneDaybyName
 };
