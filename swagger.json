@@ -355,6 +355,23 @@
           }
         }
       }
+    },
+    "/days/recipe/{id}": {
+      "get": {
+        "description": "See one day",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
     }
   }
 }

@@ -64,6 +64,39 @@ const getOneDaybyName = async (req, res) => {
   }
 };
 
+const getOneMealbyDay = async (req, res) => {
+  // #swagger.description = 'See one day's meal'
+  try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json('Must use a valid contact id to find a day.');
+    }
+    const dayId = new ObjectId(req.params.id);
+    const day = await mongodb
+      .getDatabase()
+      .db(process.env.DB_NAME)
+      .collection('Days')
+      .aggregate([
+        {
+          $lookup: {
+            from: 'Recipes',
+            localField: 'recipeName',
+            foreignField: 'name',
+            as: 'recipe'
+          }
+        }
+      ]);
+    day.toArray((err, result) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result[0]);
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 const createDay = async (req, res) => {
   // #swagger.description = 'Create new day'
   try {
@@ -150,5 +183,6 @@ module.exports = {
   updateDay,
   deleteDay,
   createDay,
-  getOneDaybyName
+  getOneDaybyName,
+  getOneMealbyDay
 };
