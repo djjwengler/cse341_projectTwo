@@ -63,6 +63,16 @@ content-type: application/json
     "recipeName":""
 }
 
+### Update day by name
+PUT http://localhost:8080/days/day/Monday HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Monday",
+    "recipeName":"Black Bean Soup"
+}
+
+
 ### Delete day
 DELETE http://localhost:8080/days/6359a6695d6e75e725998db7 HTTP/1.1
 
@@ -114,7 +124,16 @@ GET http://jw-341-projecttwo.onrender.com/days/day/Monday
 GET http://jw-341-projecttwo.onrender.com/days/recipe/63487ec8d373ea68cf1215f1
 
 ### Update day
-PUT https://jw-341-projecttwo.onrender.com/days/6350777ecb10a7354accd434 HTTP/1.1
+PUT https://jw-341-projecttwo.onrender.com/days/63487e9fd373ea68cf1215ee HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Monday",
+    "recipeName":"Black Bean Soup"
+}
+
+### Update day by name
+PUT http://jw-341-projecttwo.onrender.com/days/day/Monday HTTP/1.1
 content-type: application/json
 
 {
