@@ -12,11 +12,11 @@ routes.get('/:id', daysController.getOneDay);
 //retrieves one day by name
 routes.get('/day/:name', daysController.getOneDaybyName);
 
-//retrieves one day by name
-routes.get('/recipe/:id', daysController.getOneMealbyDay);
-
 //updates one day by ID
 routes.put('/:id', validation.saveDay, daysController.updateDay);
+
+//updates one day by name
+routes.put('/day/:name', validation.saveDay, daysController.updateDaybyName);
 
 //deletes one day by ID
 routes.delete('/:id', requiresAuth(), daysController.deleteDay);
@@ -25,3 +25,8 @@ routes.delete('/:id', requiresAuth(), daysController.deleteDay);
 routes.post('/', requiresAuth(), validation.saveDay, daysController.createDay);
 
 module.exports = routes;
+
+//Future possible routes:
+
+//retrieves one day by name
+// routes.get('/recipe/:id', daysController.getOneMealbyDay);
