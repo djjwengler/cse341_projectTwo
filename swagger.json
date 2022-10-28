@@ -12,6 +12,17 @@
     "http"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api-docs": {
       "get": {
         "description": "",
@@ -220,7 +231,7 @@
                 "name": {
                   "example": "any"
                 },
-                "mealId": {
+                "recipeName": {
                   "example": "any"
                 }
               }
@@ -284,7 +295,7 @@
                 "name": {
                   "example": "any"
                 },
-                "mealId": {
+                "recipeName": {
                   "example": "any"
                 }
               }

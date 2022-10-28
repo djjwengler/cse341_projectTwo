@@ -102,7 +102,7 @@ const createDay = async (req, res) => {
   try {
     const newDay = {
       name: req.body.name,
-      mealId: req.body.mealId
+      recipeName: req.body.recipeName
     };
     const create = await mongodb
       .getDatabase()
@@ -157,7 +157,7 @@ const updateDay = async (req, res) => {
     const dayId = new ObjectId(req.params.id);
     const updateDay = {
       name: req.body.name,
-      mealId: req.body.mealId
+      recipeName: req.body.recipeName
     };
     const update = await mongodb
       .getDatabase()

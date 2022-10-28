@@ -32,7 +32,7 @@ const saveRecipe = (req, res, next) => {
 const saveDay = (req, res, next) => {
   const validationRule = {
     name: 'required|string',
-    mealId: 'string'
+    recipeName: 'string'
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {

@@ -51,7 +51,7 @@ content-type: application/json
 
 {
     "name": "NewDay",
-    "mealID":""
+    "recipeName":""
 }
 
 ### Update day
@@ -60,7 +60,7 @@ content-type: application/json
 
 {
     "name": "NewDay2",
-    "mealID":""
+    "recipeName":""
 }
 
 ### Delete day
@@ -119,5 +119,5 @@ content-type: application/json
 
 {
     "name": "Monday",
-    "mealID":""
+    "recipeName":""
 }

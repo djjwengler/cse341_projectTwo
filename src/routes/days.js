@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const daysController = require('../controllers/days');
 const validation = require('../middleware/validation');
+const { requiresAuth } = require('express-openid-connect');
 
 //retrieves all days
 routes.get('/', daysController.getAllDays);
@@ -18,9 +19,9 @@ routes.get('/recipe/:id', daysController.getOneMealbyDay);
 routes.put('/:id', validation.saveDay, daysController.updateDay);
 
 //deletes one day by ID
-routes.delete('/:id', daysController.deleteDay);
+routes.delete('/:id', requiresAuth(), daysController.deleteDay);
 
 //creates one day
-routes.post('/', validation.saveDay, daysController.createDay);
+routes.post('/', requiresAuth(), validation.saveDay, daysController.createDay);
 
 module.exports = routes;
